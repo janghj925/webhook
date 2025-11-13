@@ -8,20 +8,4 @@ on:
 jobs:
   send-webhook:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Send webhook to AWS Lambda
-        run: |
-          echo "Sending webhook to Lambda..."
-          
-          # 올바른 JSON 형식과 -d 옵션 사용
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -d '{
-              "repository": "${{ github.repository }}",
-              "ref": "${{ github.ref }}",
-              "pusher": "${{ github.actor }}"
-            }' \
-            ${{ secrets.LAMBDA_URL }}
+    
